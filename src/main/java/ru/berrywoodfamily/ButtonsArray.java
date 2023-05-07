@@ -17,11 +17,8 @@ public class ButtonsArray {
         }
     }
 
-    private void addButton(Button button) {
-        buttonsRow.add(button);
-    }
-
     public List<Button> getButtonsRow(){
         return buttonsRow;
     }
+
 }

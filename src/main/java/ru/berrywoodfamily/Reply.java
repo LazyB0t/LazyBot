@@ -29,7 +29,30 @@ public class Reply {
                     break;
             }
         }
+    }
 
+    public boolean hasButtons(){
+        return buttonsArrays.size() > 0;
+    }
+
+    public List<ButtonsArray> getButtonsArrays(){
+        return buttonsArrays;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getText(){
+        return text;
+    }
+
+    public String getAfter(){
+        return after;
+    }
+
+    public String getNext(){
+        return next;
     }
 
 }
