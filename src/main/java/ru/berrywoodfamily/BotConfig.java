@@ -7,14 +7,13 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bot {
+public class BotConfig {
     private String token;
     private List<Reply> replies;
 
-    public Bot(Document document) {
+    public BotConfig(Document document) {
         replies = new ArrayList<>();
         NodeList replyNodes = document.getElementsByTagName("Reply");
-        System.out.println("Длина "+ replyNodes.getLength());
         for(int i = 0; i < replyNodes.getLength(); i++) {
             if (replyNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 replies.add(new Reply(replyNodes.item(i)));
@@ -26,4 +25,9 @@ public class Bot {
     public String getToken() {
         return token;
     }
+
+    public List<Reply> getReplies(){
+        return replies;
+    }
+
 }
