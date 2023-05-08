@@ -26,4 +26,9 @@ public class Bot {
     public String getToken() {
         return token;
     }
+
+    public List<Reply> getReplies(){
+        return replies;
+    }
+
 }
