@@ -33,7 +33,7 @@ public class DOMBot {
         }
     }
 
-    public Bot getBot(){
-        return new Bot(document);
+    public BotConfig getBot(){
+        return new BotConfig(document);
     }
 }
