@@ -9,11 +9,13 @@ import java.util.List;
 public class ButtonsArray {
     private List<Button> buttonsRow;
 
-    public ButtonsArray(Node buttonsArrayNode){
+    public ButtonsArray(Node buttonsArrayNode) {
         buttonsRow = new ArrayList<>();
         NodeList buttonsNod = buttonsArrayNode.getChildNodes();
-        for(int i = 0; i < buttonsNod.getLength();i++){
-            buttonsRow.add(new Button(buttonsNod.item(i)));
+        for (int i = 0; i < buttonsNod.getLength(); i++) {
+            if (buttonsNod.item(i).getNodeName().equals("Button")) {
+                buttonsRow.add(new Button(buttonsNod.item(i)));
+            }
         }
     }
 
