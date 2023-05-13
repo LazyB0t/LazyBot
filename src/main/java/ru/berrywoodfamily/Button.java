@@ -13,11 +13,11 @@ public class Button extends AbstractComplexElement {
         callback = new Callback(getElement("Callback"));
     }
 
-    public String getText() {
-        return text.getValue();
+    public Text getText() {
+        return text;
     }
 
-    public String getCallback() {
-        return callback.getValue();
+    public Callback getCallback() {
+        return callback;
     }
 }

@@ -23,4 +23,8 @@ public class Reply extends AbstractComplexElement {
     public Message getMessage() {
         return message;
     }
+
+    public String getWait() {
+        return wait;
+    }
 }
