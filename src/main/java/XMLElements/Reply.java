@@ -11,9 +11,9 @@ public class Reply extends AbstractComplexElement {
 
     public Reply(Node node) {
         super(node);
-        menu = new Menu(getElement("Menu"));
-        message = new Message(getElement("Message"));
-        wait = getAttribute("wait");
+        menu = hasElement("Menu") ? new Menu(getElement("Menu")) : null;
+        message = hasElement("Message") ? new Message(getElement("Message")) : null;
+        wait = hasAttribute("wait") ? getAttribute("wait") : null;
     }
 
     public Menu getMenu() {
