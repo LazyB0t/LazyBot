@@ -1,4 +1,4 @@
-package ru.berrywoodfamily;
+package XMLElements;
 
 import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;

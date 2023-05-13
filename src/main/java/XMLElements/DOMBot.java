@@ -1,4 +1,4 @@
-package ru.berrywoodfamily;
+package XMLElements;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
