@@ -3,9 +3,9 @@ package TGElements;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
-import ru.berrywoodfamily.Button;
-import ru.berrywoodfamily.ButtonsArray;
-import ru.berrywoodfamily.Menu;
+import XMLElements.Button;
+import XMLElements.ButtonsArray;
+import XMLElements.Menu;
 
 import java.util.List;
 
