@@ -1,7 +1,7 @@
 package TGElements;
 
 import com.pengrad.telegrambot.request.SendMessage;
-import ru.berrywoodfamily.Message;
+import XMLElements.Message;
 
 public class TGMessage extends SendMessage {
 
