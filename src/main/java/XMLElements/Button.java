@@ -2,7 +2,6 @@ package XMLElements;
 
 import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;
-import ru.berrywoodfamily.Callback;
 
 public class Button extends AbstractComplexElement {
     private Text text;
