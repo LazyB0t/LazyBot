@@ -1,25 +1,23 @@
 package ru.berrywoodfamily;
 
+import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ButtonsArray {
+public class ButtonsArray extends AbstractComplexElement {
     private List<Button> buttonsRow;
 
-    public ButtonsArray(Node buttonsArrayNode) {
-        buttonsRow = new ArrayList<>();
-        NodeList buttonsNod = buttonsArrayNode.getChildNodes();
-        for (int i = 0; i < buttonsNod.getLength(); i++) {
-            if (buttonsNod.item(i).getNodeName().equals("Button")) {
-                buttonsRow.add(new Button(buttonsNod.item(i)));
-            }
+    public ButtonsArray(Node node) {
+        super(node);
+        buttonsRow = new ArrayList();
+        for (Node button: getElements("Button")) {
+            buttonsRow.add(new Button(button));
         }
     }
 
-    public List<Button> getButtonsRow(){
+    public List<Button> getButtonsRow() {
         return buttonsRow;
     }
 

@@ -15,14 +15,14 @@ public class DOMBot {
     private DocumentBuilderFactory factory;
     private DocumentBuilder builder;
 
-    public DOMBot() {
+    public DOMBot(String filePath) {
         factory = DocumentBuilderFactory.newInstance();
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
-        File file = new File("src/main/resources/Bot.xml");
+        File file = new File(filePath);
         System.out.println(file.canRead());
         try {
             document = builder.parse(file);
@@ -33,7 +33,7 @@ public class DOMBot {
         }
     }
 
-    public BotConfig getBot(){
-        return new BotConfig(document);
+    public Bot getBot(){
+        return new Bot(document.getElementsByTagName("Bot").item(0));
     }
 }
