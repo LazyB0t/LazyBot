@@ -1,7 +1,6 @@
 package ru.berrywoodfamily;
 
-import TGElements.TGMenu;
-import TGElements.TGMessage;
+import TGElements.SendMessage;
 import XMLElements.*;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.AbstractSendRequest;
@@ -29,6 +28,7 @@ public class UpdatesHandler {
             Reply reply = nextReply.get(getChatID());
             if (reply.getWait().equals(getUpdateType())) {
                 tgReplies.add(getTGElement(nextReply.get(getChatID())));
+                nextReply.remove(getChatID());
             }
         } else {
             for (Replies replies: bot.getReplies()) {
@@ -63,9 +63,9 @@ public class UpdatesHandler {
         for (String nameChild: reply.getNamesChildren()){
             switch (nameChild) {
                 case "Menu":
-                    return new TGMenu(getChatID(),reply.getMenu());
+                    return new SendMessage(getChatID(),reply.getMenu());
                 case "Message":
-                    return new TGMessage(getChatID(),reply.getMessage());
+                    return new SendMessage(getChatID(),reply.getMessage());
             }
         }
         return null;
