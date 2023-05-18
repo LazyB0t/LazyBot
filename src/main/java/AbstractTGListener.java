@@ -3,6 +3,7 @@ import UpdatesHandling.XMLReplyToTGElem;
 import XMLElements.Bot;
 import XMLElements.DOMBot;
 import XMLElements.Reply;
+import XMLElements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
@@ -31,8 +32,7 @@ public abstract class AbstractTGListener implements UpdatesListener {
         List<AbstractSendRequest> tgReplies = new ArrayList();
         for (Update update: list) {
             for (Reply reply: getReplies.replies(getChatID(update),getUpdateData(update))) {
-                //TODO: Implement a variable intercept using the saveData() method to implement an extension point.
-                saveData(new ArrayList<>(),update);
+                saveData(reply.getSaves(),update);
                 tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
             }
         }
@@ -54,6 +54,6 @@ public abstract class AbstractTGListener implements UpdatesListener {
         return (update.message() == null) ? "button" : "txt";
     }
 
-    public abstract void saveData(List<String> values, Update update);
+    public abstract void saveData(List<SaveTo> saves, Update update);
     public abstract List<AbstractSendRequest> getTGReply(List<AbstractSendRequest> tgReplies);
 }

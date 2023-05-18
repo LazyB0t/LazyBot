@@ -27,15 +27,6 @@ public class GetReplies {
         }
     }
 
-    //TODO: Change (List<Reply> replies) to (Reply reply reply). Implement pass through SaveTo array.
-    public List<String> getVariables(List<Reply> replies) {
-        List<String> variables= new ArrayList();
-        for (Reply reply: replies){
-            variables.add(reply.getSaveTo().getVariable() != null ? reply.getSaveTo().getVariable().getValue():null);
-        }
-        return variables;
-    }
-
     private List<Reply> findReplies(Object chatID, String after) {
         List<Reply> relevantReplies = new ArrayList();
         for (Replies replies : listReplies) {
