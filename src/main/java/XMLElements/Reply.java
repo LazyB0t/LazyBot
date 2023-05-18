@@ -3,19 +3,25 @@ package XMLElements;
 import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Reply extends AbstractComplexElement {
     private Menu menu;
     private Message message;
     private String wait;
-    private SaveTo saveTo;
+    private List<SaveTo> saves;
 
     public Reply(Node node) {
         super(node);
+        saves = new ArrayList();
         menu = hasElement("Menu") ? new Menu(getElement("Menu")) : null;
         message = hasElement("Message") ? new Message(getElement("Message")) : null;
         wait = hasAttribute("wait") ? getAttribute("wait") : null;
-        saveTo = hasElement("SaveTo") ? new SaveTo(getElement("SaveTo")) : null;
+        for (Node saveTo: getElements("SaveTo")) {
+            saves.add(new SaveTo(saveTo));
+        }
     }
 
     public Menu getMenu() {
@@ -30,7 +36,7 @@ public class Reply extends AbstractComplexElement {
         return wait;
     }
 
-    public SaveTo getSaveTo() {
-        return saveTo;
+    public List<SaveTo> getSaves() {
+        return saves;
     }
 }
