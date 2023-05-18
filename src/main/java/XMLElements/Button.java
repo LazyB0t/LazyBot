@@ -4,17 +4,17 @@ import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;
 
 public class Button extends AbstractComplexElement {
-    private Text text;
+    private ButtonLabel buttonLabel;
     private Callback callback;
 
     public Button(Node node) {
         super(node);
-        text = new Text(getElement("Text"));
+        buttonLabel = new ButtonLabel(getElement("Text"));
         callback = new Callback(getElement("Callback"));
     }
 
-    public Text getText() {
-        return text;
+    public ButtonLabel getButtonLabel() {
+        return buttonLabel;
     }
 
     public Callback getCallback() {

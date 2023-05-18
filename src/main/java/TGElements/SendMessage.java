@@ -26,7 +26,7 @@ public class SendMessage extends com.pengrad.telegrambot.request.SendMessage {
             List<Button> buttonsArray = buttonsArrays.get(i).getButtonsRow();
             InlineKeyboardButton[] buttonsRow = new InlineKeyboardButton[buttonsArray.size()];
             for (int j = 0; j < buttonsArray.size(); j++) {
-                buttonsRow[j] = new InlineKeyboardButton(buttonsArray.get(j).getText().getValue()).callbackData(buttonsArray.get(j).getCallback().getValue());
+                buttonsRow[j] = new InlineKeyboardButton(buttonsArray.get(j).getButtonLabel().getValue()).callbackData(buttonsArray.get(j).getCallback().getValue());
             }
             keyboard.addRow(buttonsRow);
         }
