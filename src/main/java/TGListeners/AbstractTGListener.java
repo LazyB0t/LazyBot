@@ -44,15 +44,15 @@ public abstract class AbstractTGListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
-    private Object getChatID(Update update) {
+    protected Object getChatID(Update update) {
         return (update.message() == null) ? update.callbackQuery().message().chat().id() : update.message().chat().id();
     }
 
-    private String getUpdateData(Update update) {
+    protected String getUpdateData(Update update) {
         return (update.message() == null) ? update.callbackQuery().data() : update.message().text();
     }
 
-    private String getUpdateType(Update update) {
+    protected String getUpdateType(Update update) {
         return (update.message() == null) ? "button" : "txt";
     }
 
