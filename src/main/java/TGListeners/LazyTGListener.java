@@ -4,6 +4,7 @@ import XMLElements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.AbstractSendRequest;
+import com.pengrad.telegrambot.request.BaseRequest;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class LazyTGListener extends AbstractTGListener{
     }
 
     @Override
-    public List<AbstractSendRequest> getTGReply(List<AbstractSendRequest> tgReplies) {
+    public List<BaseRequest> getTGReply(List<BaseRequest> tgReplies) {
         return tgReplies;
     }
 }

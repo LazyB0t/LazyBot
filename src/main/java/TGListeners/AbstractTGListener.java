@@ -9,7 +9,8 @@ import XMLElements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.request.AbstractSendRequest;
+import com.pengrad.telegrambot.request.AnswerCallbackQuery;
+import com.pengrad.telegrambot.request.BaseRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,17 @@ public abstract class AbstractTGListener implements UpdatesListener {
 
     @Override
     public int process(List<Update> list) {
-        List<AbstractSendRequest> tgReplies = new ArrayList();
+        List<BaseRequest> tgReplies = new ArrayList();
         for (Update update: list) {
+            if (getUpdateType(update) == "button") {
+                tgReplies.add(new AnswerCallbackQuery(update.callbackQuery().id()));
+            }
             for (Reply reply: getReplies.replies(getChatID(update),getUpdateData(update))) {
                 saveData(reply.getSaves(),update);
                 tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
             }
         }
-        for (AbstractSendRequest tgReply: getTGReply(tgReplies)){
+        for (BaseRequest tgReply: getTGReply(tgReplies)){
             tgBotAPI.execute(tgReply);
         }
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
@@ -57,5 +61,5 @@ public abstract class AbstractTGListener implements UpdatesListener {
     }
 
     public abstract void saveData(List<SaveTo> saves, Update update);
-    public abstract List<AbstractSendRequest> getTGReply(List<AbstractSendRequest> tgReplies);
+    public abstract List<BaseRequest> getTGReply(List<BaseRequest> tgReplies);
 }
