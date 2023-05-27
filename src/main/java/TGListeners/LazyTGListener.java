@@ -22,4 +22,8 @@ public class LazyTGListener extends AbstractTGListener{
     public List<BaseRequest> getTGReply(List<BaseRequest> tgReplies) {
         return tgReplies;
     }
+
+    @Override
+    public void getNewUpdate(Update update) {
+    }
 }

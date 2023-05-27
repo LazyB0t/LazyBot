@@ -34,6 +34,7 @@ public abstract class AbstractTGListener implements UpdatesListener {
     public int process(List<Update> list) {
         List<BaseRequest> tgReplies = new ArrayList();
         for (Update update: list) {
+            getNewUpdate(update);
             if (getUpdateType(update) == "button") {
                 tgReplies.add(new AnswerCallbackQuery(update.callbackQuery().id()));
             }
@@ -60,6 +61,7 @@ public abstract class AbstractTGListener implements UpdatesListener {
         return (update.message() == null) ? "button" : "txt";
     }
 
+    public abstract void getNewUpdate(Update update);
     public abstract void saveData(List<SaveTo> saves, Update update);
     public abstract List<BaseRequest> getTGReply(List<BaseRequest> tgReplies);
 }
