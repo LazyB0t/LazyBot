@@ -3,14 +3,18 @@ package TGListeners;
 import XMLElements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.request.AbstractSendRequest;
 import com.pengrad.telegrambot.request.BaseRequest;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class LazyTGListener extends AbstractTGListener{
     public LazyTGListener(String botPath, TelegramBot tgBotAPI) {
         super(botPath, tgBotAPI);
+    }
+
+    public LazyTGListener(InputStream is, TelegramBot tgBotAPI) {
+        super(is, tgBotAPI);
     }
 
     @Override

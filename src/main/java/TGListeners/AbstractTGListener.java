@@ -12,6 +12,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.AnswerCallbackQuery;
 import com.pengrad.telegrambot.request.BaseRequest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,14 @@ public abstract class AbstractTGListener implements UpdatesListener {
 
     public AbstractTGListener(String botPath, TelegramBot tgBotAPI) {
         domBot = new DOMBot(botPath);
+        bot = domBot.getBot();
+        getReplies = new GetReplies(bot.getReplies());
+        xmlAdapter = new XMLReplyToTGElem();
+        this.tgBotAPI = tgBotAPI;
+    }
+
+    public AbstractTGListener(InputStream is, TelegramBot tgBotAPI) {
+        domBot = new DOMBot(is);
         bot = domBot.getBot();
         getReplies = new GetReplies(bot.getReplies());
         xmlAdapter = new XMLReplyToTGElem();
@@ -43,7 +52,7 @@ public abstract class AbstractTGListener implements UpdatesListener {
                 tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
             }
         }
-        for (BaseRequest tgReply: getTGReply(tgReplies)){
+        for (BaseRequest tgReply: getTGReply(tgReplies)) {
             tgBotAPI.execute(tgReply);
         }
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
