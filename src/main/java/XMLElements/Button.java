@@ -9,7 +9,7 @@ public class Button extends AbstractComplexElement {
 
     public Button(Node node) {
         super(node);
-        buttonLabel = new ButtonLabel(getElement("Text"));
+        buttonLabel = new ButtonLabel(getElement("ButtonLabel"));
         callback = new Callback(getElement("Callback"));
     }
 
