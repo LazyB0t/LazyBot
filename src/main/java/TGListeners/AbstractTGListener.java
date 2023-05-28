@@ -18,25 +18,23 @@ import java.util.List;
 
 public abstract class AbstractTGListener implements UpdatesListener {
     private Bot bot;
-    private DOMBot domBot;
     private GetReplies getReplies;
     private XMLReplyToTGElem xmlAdapter;
     private TelegramBot tgBotAPI;
 
-    public AbstractTGListener(String botPath, TelegramBot tgBotAPI) {
-        domBot = new DOMBot(botPath);
-        bot = domBot.getBot();
+    public AbstractTGListener(Bot bot, TelegramBot tgBotAPI) {
+        this.bot = bot;
         getReplies = new GetReplies(bot.getReplies());
         xmlAdapter = new XMLReplyToTGElem();
         this.tgBotAPI = tgBotAPI;
     }
 
+    public AbstractTGListener(String botPath, TelegramBot tgBotAPI) {
+        this(new DOMBot(botPath).getBot(),tgBotAPI);
+    }
+
     public AbstractTGListener(InputStream is, TelegramBot tgBotAPI) {
-        domBot = new DOMBot(is);
-        bot = domBot.getBot();
-        getReplies = new GetReplies(bot.getReplies());
-        xmlAdapter = new XMLReplyToTGElem();
-        this.tgBotAPI = tgBotAPI;
+        this(new DOMBot(is).getBot(),tgBotAPI);
     }
 
     @Override

@@ -1,31 +1,30 @@
 package LazyBots;
 
-import UpdatesHandling.UpdatesHandler;
+import TGListeners.LazyTGListener;
+import XMLElements.Bot;
+import XMLElements.DOMBot;
 import com.pengrad.telegrambot.TelegramBot;
-import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.request.AbstractSendRequest;
 
-import java.util.List;
+import java.io.InputStream;
 
-public abstract class LazyBotTG {
-    private UpdatesHandler updatesHandler;
+public class LazyBotTG {
     private TelegramBot telegramBotAPI;
+    private Bot bot;
     public LazyBotTG(String botPath) {
-        updatesHandler = new UpdatesHandler(botPath);
-        telegramBotAPI = new TelegramBot("");
+        this(new DOMBot(botPath));
+    }
+
+    public LazyBotTG(InputStream is) {
+        this(new DOMBot(is));
+    }
+
+    public LazyBotTG(DOMBot domBot) {
+        bot = domBot.getBot();
+        telegramBotAPI = new TelegramBot(bot.getToken());
     }
 
     public void start() {
-        telegramBotAPI.setUpdatesListener(new UpdatesListener() {
-            @Override
-            public int process(List<Update> list) {
-                return UpdatesListener.CONFIRMED_UPDATES_ALL;
-            }
-        });
+        telegramBotAPI.setUpdatesListener(new LazyTGListener(bot,telegramBotAPI));
     }
-
-    public abstract void savedData();
-    public abstract List<AbstractSendRequest> getReplies(List<AbstractSendRequest> replies);
 
 }
