@@ -1,9 +1,9 @@
-package TGElements;
+package ru.lazybot.messages;
 
-import XMLElements.Button;
-import XMLElements.ButtonsArray;
-import XMLElements.Menu;
-import XMLElements.Message;
+import ru.lazybot.elements.Button;
+import ru.lazybot.elements.ButtonsArray;
+import ru.lazybot.elements.Menu;
+import ru.lazybot.elements.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 

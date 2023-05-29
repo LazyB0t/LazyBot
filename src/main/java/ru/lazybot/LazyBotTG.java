@@ -1,8 +1,7 @@
-package LazyBots;
+package ru.lazybot;
 
-import TGListeners.LazyTGListener;
-import XMLElements.Bot;
-import XMLElements.DOMBot;
+import ru.lazybot.elements.Bot;
+import ru.lazybot.elements.DOMBot;
 import com.pengrad.telegrambot.TelegramBot;
 
 import java.io.InputStream;

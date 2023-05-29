@@ -1,7 +1,7 @@
-package UpdatesHandling;
+package ru.lazybot;
 
-import XMLElements.Replies;
-import XMLElements.Reply;
+import ru.lazybot.elements.Replies;
+import ru.lazybot.elements.Reply;
 
 import java.util.ArrayList;
 import java.util.HashMap;

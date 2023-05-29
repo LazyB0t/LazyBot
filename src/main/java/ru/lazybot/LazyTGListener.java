@@ -1,14 +1,14 @@
-package TGListeners;
+package ru.lazybot;
 
-import XMLElements.Bot;
-import XMLElements.SaveTo;
+import ru.lazybot.elements.Bot;
+import ru.lazybot.elements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 
 import java.util.List;
 
-public class LazyTGListener extends AbstractTGListener{
+public class LazyTGListener extends AbstractTGListener {
     public LazyTGListener(Bot bot, TelegramBot tgBotAPI) {
         super(bot,tgBotAPI);
     }

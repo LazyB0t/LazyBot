@@ -1,7 +1,7 @@
-package UpdatesHandling;
+package ru.lazybot;
 
-import TGElements.SendMessage;
-import XMLElements.Reply;
+import ru.lazybot.messages.SendMessage;
+import ru.lazybot.elements.Reply;
 import com.pengrad.telegrambot.request.AbstractSendRequest;
 
 public class XMLReplyToTGElem {

@@ -1,11 +1,9 @@
-package TGListeners;
+package ru.lazybot;
 
-import UpdatesHandling.GetReplies;
-import UpdatesHandling.XMLReplyToTGElem;
-import XMLElements.Bot;
-import XMLElements.DOMBot;
-import XMLElements.Reply;
-import XMLElements.SaveTo;
+import ru.lazybot.elements.Bot;
+import ru.lazybot.elements.DOMBot;
+import ru.lazybot.elements.Reply;
+import ru.lazybot.elements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;

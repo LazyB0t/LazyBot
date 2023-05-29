@@ -1,4 +1,4 @@
-package XMLElements;
+package ru.lazybot.elements;
 
 import org.jaxptoobjects.AbstractComplexElement;
 import org.w3c.dom.Node;
