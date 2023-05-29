@@ -23,7 +23,7 @@ public class LazyBotTG {
     }
 
     public void start() {
-        telegramBotAPI.setUpdatesListener(new LazyTGListener(bot,telegramBotAPI));
+        telegramBotAPI.setUpdatesListener(new LazyUpdatesListener(bot,telegramBotAPI));
     }
 
 }

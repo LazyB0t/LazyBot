@@ -14,24 +14,24 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTGListener implements UpdatesListener {
+public abstract class AbsUpdatesListener implements UpdatesListener {
     private Bot bot;
     private GetReplies getReplies;
     private XMLReplyToTGElem xmlAdapter;
     private TelegramBot tgBotAPI;
 
-    public AbstractTGListener(Bot bot, TelegramBot tgBotAPI) {
+    public AbsUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
         this.bot = bot;
         getReplies = new GetReplies(bot.getReplies());
         xmlAdapter = new XMLReplyToTGElem();
         this.tgBotAPI = tgBotAPI;
     }
 
-    public AbstractTGListener(String botPath, TelegramBot tgBotAPI) {
+    public AbsUpdatesListener(String botPath, TelegramBot tgBotAPI) {
         this(new DOMBot(botPath).getBot(),tgBotAPI);
     }
 
-    public AbstractTGListener(InputStream is, TelegramBot tgBotAPI) {
+    public AbsUpdatesListener(InputStream is, TelegramBot tgBotAPI) {
         this(new DOMBot(is).getBot(),tgBotAPI);
     }
 

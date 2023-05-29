@@ -8,8 +8,8 @@ import com.pengrad.telegrambot.request.BaseRequest;
 
 import java.util.List;
 
-public class LazyTGListener extends AbstractTGListener {
-    public LazyTGListener(Bot bot, TelegramBot tgBotAPI) {
+public class LazyUpdatesListener extends AbsUpdatesListener {
+    public LazyUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
         super(bot,tgBotAPI);
     }
 
