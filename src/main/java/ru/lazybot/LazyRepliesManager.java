@@ -8,19 +8,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GetReplies {
-    private List<Replies> listReplies;
-    private Map<Object,List<Reply>> nextReplies;
+public class LazyRepliesManager extends AbsRepliesManager {
 
-    public GetReplies(List<Replies> listReplies) {
-        this.listReplies = listReplies;
-        nextReplies = new HashMap();
+    public LazyRepliesManager(List<Replies> listReplies) {
+        super(listReplies);
     }
 
-    public List<Reply> replies(Object chatID, String updateData) {
-        if (nextReplies.containsKey(chatID)) {
-            List<Reply> replies = nextReplies.get(chatID);
-            nextReplies.remove(chatID);
+    @Override
+    public Map setNextReplies() {
+        return new HashMap();
+    }
+
+    @Override
+    public Map setSentReplies() {
+        return new HashMap();
+    }
+
+    public List<Reply> getSuitableReplies(Object chatID, String updateData) {
+        if (getNextReplies().containsKey(chatID)) {
+            List<Reply> replies = getNextReplies().get(chatID);
+            getNextReplies().remove(chatID);
             return findReplies(chatID, replies);
         } else {
             return findReplies(chatID, updateData);
@@ -29,7 +36,7 @@ public class GetReplies {
 
     private List<Reply> findReplies(Object chatID, String after) {
         List<Reply> relevantReplies = new ArrayList();
-        for (Replies replies : listReplies) {
+        for (Replies replies : getListReplies()) {
             if (replies.getAfter().equals(after)) {
                 relevantReplies = replies.getReplies();
                 break;
@@ -37,7 +44,7 @@ public class GetReplies {
         }
         for (Reply reply : relevantReplies) {
             if (reply.hasAttribute("wait")) {
-                nextReplies.put(chatID,relevantReplies.subList(relevantReplies.indexOf(reply),relevantReplies.size()));
+                getNextReplies().put(chatID,relevantReplies.subList(relevantReplies.indexOf(reply),relevantReplies.size()));
                 relevantReplies = relevantReplies.subList(0, relevantReplies.indexOf(reply));
                 break;
             }
@@ -48,7 +55,7 @@ public class GetReplies {
     private List<Reply> findReplies(Object chatID, List<Reply> replies) {
         for (Reply reply : replies.subList(1,replies.size())) {
             if (reply.hasAttribute("wait")) {
-                nextReplies.put(chatID,replies.subList(replies.indexOf(reply),replies.size()));
+                getNextReplies().put(chatID,replies.subList(replies.indexOf(reply),replies.size()));
                 replies = replies.subList(0, replies.indexOf(reply));
                 break;
             }
