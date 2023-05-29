@@ -1,6 +1,7 @@
 package ru.lazybot;
 
 import ru.lazybot.elements.Bot;
+import ru.lazybot.elements.Replies;
 import ru.lazybot.elements.SaveTo;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
@@ -21,6 +22,11 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     @Override
     public List<BaseRequest> getMessages(List<BaseRequest> tgReplies) {
         return tgReplies;
+    }
+
+    @Override
+    public IRepliesManager setRepliesManager(List<Replies> listReplies) {
+        return new LazyRepliesManager(listReplies);
     }
 
     @Override
