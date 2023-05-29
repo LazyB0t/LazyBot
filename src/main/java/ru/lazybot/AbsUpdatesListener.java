@@ -1,9 +1,6 @@
 package ru.lazybot;
 
-import ru.lazybot.elements.Bot;
-import ru.lazybot.elements.DOMBot;
-import ru.lazybot.elements.Reply;
-import ru.lazybot.elements.SaveTo;
+import ru.lazybot.elements.*;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
@@ -16,13 +13,13 @@ import java.util.List;
 
 public abstract class AbsUpdatesListener implements UpdatesListener {
     private Bot bot;
-    private GetReplies getReplies;
+    private IRepliesManager RepliesManager;
     private XMLReplyToTGElem xmlAdapter;
     private TelegramBot tgBotAPI;
 
     public AbsUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
         this.bot = bot;
-        getReplies = new GetReplies(bot.getReplies());
+        RepliesManager = setRepliesManager(bot.getReplies());
         xmlAdapter = new XMLReplyToTGElem();
         this.tgBotAPI = tgBotAPI;
     }
@@ -43,7 +40,7 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
             if (getUpdateType(update) == "button") {
                 tgReplies.add(new AnswerCallbackQuery(update.callbackQuery().id()));
             }
-            for (Reply reply: getReplies.replies(getChatID(update),getUpdateData(update))) {
+            for (Reply reply: RepliesManager.getSuitableReplies(getChatID(update),getUpdateData(update))) {
                 saveData(reply.getSaves(),update);
                 tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
             }
@@ -69,4 +66,5 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
     public abstract void getNewUpdate(Update update);
     public abstract void saveData(List<SaveTo> saves, Update update);
     public abstract List<BaseRequest> getMessages(List<BaseRequest> tgReplies);
+    public abstract IRepliesManager setRepliesManager(List<Replies> listReplies);
 }
