@@ -19,7 +19,7 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     }
 
     @Override
-    public List<BaseRequest> getTGReply(List<BaseRequest> tgReplies) {
+    public List<BaseRequest> getMessages(List<BaseRequest> tgReplies) {
         return tgReplies;
     }
 

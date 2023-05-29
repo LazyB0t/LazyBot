@@ -48,7 +48,7 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
                 tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
             }
         }
-        for (BaseRequest tgReply: getTGReply(tgReplies)) {
+        for (BaseRequest tgReply: getMessages(tgReplies)) {
             tgBotAPI.execute(tgReply);
         }
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
@@ -68,5 +68,5 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
 
     public abstract void getNewUpdate(Update update);
     public abstract void saveData(List<SaveTo> saves, Update update);
-    public abstract List<BaseRequest> getTGReply(List<BaseRequest> tgReplies);
+    public abstract List<BaseRequest> getMessages(List<BaseRequest> tgReplies);
 }
