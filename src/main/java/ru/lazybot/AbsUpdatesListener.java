@@ -12,13 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsUpdatesListener implements UpdatesListener {
-    private Bot bot;
     private IRepliesManager RepliesManager;
     private XMLReplyToTGElem xmlAdapter;
     private TelegramBot tgBotAPI;
 
     public AbsUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
-        this.bot = bot;
         RepliesManager = setRepliesManager(bot.getReplies());
         xmlAdapter = new XMLReplyToTGElem();
         this.tgBotAPI = tgBotAPI;
