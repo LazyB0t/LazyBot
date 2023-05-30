@@ -1,11 +1,12 @@
 package ru.lazybot;
 
+import com.pengrad.telegrambot.request.BaseRequest;
 import ru.lazybot.messages.SendMessage;
 import ru.lazybot.elements.Reply;
-import com.pengrad.telegrambot.request.AbstractSendRequest;
 
-public class XMLReplyToTGElem {
-    public AbstractSendRequest getTGElem(Object chatID,Reply reply) {
+public class LazyMessageFactory implements IMessageFactory {
+    @Override
+    public BaseRequest getMessage(Object chatID,Reply reply) {
         for (String nameChild: reply.getNamesChildren()){
             switch (nameChild) {
                 case "Menu":
