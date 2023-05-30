@@ -30,6 +30,11 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     }
 
     @Override
+    public IMessageFactory setMessageFactory() {
+        return new LazyMessageFactory();
+    }
+
+    @Override
     public void getNewUpdate(Update update) {
     }
 }
