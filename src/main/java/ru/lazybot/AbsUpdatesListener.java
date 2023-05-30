@@ -13,12 +13,12 @@ import java.util.List;
 
 public abstract class AbsUpdatesListener implements UpdatesListener {
     private IRepliesManager RepliesManager;
-    private XMLReplyToTGElem xmlAdapter;
+    private IMessageFactory messageFactory;
     private TelegramBot tgBotAPI;
 
     public AbsUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
         RepliesManager = setRepliesManager(bot.getReplies());
-        xmlAdapter = new XMLReplyToTGElem();
+        messageFactory = setMessageFactory();
         this.tgBotAPI = tgBotAPI;
     }
 
@@ -40,7 +40,7 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
             }
             for (Reply reply: RepliesManager.getSuitableReplies(getChatID(update),getUpdateData(update))) {
                 saveData(reply.getSaves(),update);
-                tgReplies.add(xmlAdapter.getTGElem(getChatID(update), reply));
+                tgReplies.add(messageFactory.getMessage(getChatID(update), reply));
             }
         }
         for (BaseRequest tgReply: getMessages(tgReplies)) {
@@ -65,4 +65,5 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
     public abstract void saveData(List<SaveTo> saves, Update update);
     public abstract List<BaseRequest> getMessages(List<BaseRequest> tgReplies);
     public abstract IRepliesManager setRepliesManager(List<Replies> listReplies);
+    public abstract IMessageFactory setMessageFactory();
 }
