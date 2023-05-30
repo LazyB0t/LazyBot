@@ -1,7 +1,6 @@
 package ru.lazybot;
 
 import ru.lazybot.elements.Bot;
-import ru.lazybot.elements.DOMBot;
 import com.pengrad.telegrambot.TelegramBot;
 
 import java.io.InputStream;
