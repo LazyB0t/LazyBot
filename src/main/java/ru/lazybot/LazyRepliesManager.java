@@ -24,13 +24,17 @@ public class LazyRepliesManager extends AbsRepliesManager {
         return new HashMap();
     }
 
-    public List<Reply> getSuitableReplies(Object chatID, String updateData) {
+    //TODO: Made a temporary solution. Reworked the method with the AbsIncMessage class in mind.
+    @Override
+    public List<Reply> getSuitableReplies(AbsIncMessage incMessage) {
+        Object chatID = incMessage.getChatID();
+        String data = incMessage.getData("");
         if (getNextReplies().containsKey(chatID)) {
             List<Reply> replies = getNextReplies().get(chatID);
             getNextReplies().remove(chatID);
             return findReplies(chatID, replies);
         } else {
-            return findReplies(chatID, updateData);
+            return findReplies(chatID, data);
         }
     }
 
