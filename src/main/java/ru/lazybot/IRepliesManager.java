@@ -5,5 +5,5 @@ import ru.lazybot.elements.Reply;
 import java.util.List;
 
 public interface IRepliesManager {
-    public List<Reply> getSuitableReplies(Object chatID, String updateData);
+    public List<Reply> getSuitableReplies(AbsIncMessage incMessage);
 }
