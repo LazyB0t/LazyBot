@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LazyIncMessage extends AbsIncMessage {
-    private Update update;
     private String type;
     private Object chatID;
     private Map<String,String> data;
 
     public LazyIncMessage(Update update) {
-        this.update = update;
+        super(update);
         data = new HashMap();
         if (update.callbackQuery() != null) {
             type = "button";
@@ -35,18 +34,17 @@ public class LazyIncMessage extends AbsIncMessage {
         }
     }
 
-    public Update getUpdate() {
-        return update;
-    }
-
+    @Override
     public String getType() {
         return type;
     }
 
+    @Override
     public Object getChatID() {
         return chatID;
     }
 
+    @Override
     public String getData(String dataType) {
         return data.get(dataType);
     }
