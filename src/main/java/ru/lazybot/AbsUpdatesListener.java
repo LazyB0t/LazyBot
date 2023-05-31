@@ -34,13 +34,14 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
     public int process(List<Update> list) {
         List<BaseRequest> tgReplies = new ArrayList();
         for (Update update: list) {
+            AbsIncMessage incMessage = setIncMessage(update);
             getNewUpdate(update);
-            if (getUpdateType(update) == "button") {
+            if (incMessage.getType().equals("button")) {
                 tgReplies.add(new AnswerCallbackQuery(update.callbackQuery().id()));
             }
-            for (Reply reply: RepliesManager.getSuitableReplies(getChatID(update),getUpdateData(update))) {
-                saveData(reply.getSaves(),update);
-                tgReplies.add(messageFactory.getMessage(getChatID(update), reply));
+            for (Reply reply: RepliesManager.getSuitableReplies(incMessage)) {
+                saveData(reply.getSaves(),incMessage);
+                tgReplies.add(messageFactory.getMessage(incMessage.getChatID(), reply));
             }
         }
         for (BaseRequest tgReply: getMessages(tgReplies)) {
@@ -49,21 +50,10 @@ public abstract class AbsUpdatesListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
-    protected Object getChatID(Update update) {
-        return (update.message() == null) ? update.callbackQuery().message().chat().id() : update.message().chat().id();
-    }
-
-    protected String getUpdateData(Update update) {
-        return (update.message() == null) ? update.callbackQuery().data() : update.message().text();
-    }
-
-    protected String getUpdateType(Update update) {
-        return (update.message() == null) ? "button" : "txt";
-    }
-
     public abstract void getNewUpdate(Update update);
-    public abstract void saveData(List<SaveTo> saves, Update update);
+    public abstract void saveData(List<SaveTo> saves, AbsIncMessage incMessage);
     public abstract List<BaseRequest> getMessages(List<BaseRequest> tgReplies);
     public abstract IRepliesManager setRepliesManager(List<Replies> listReplies);
     public abstract IMessageFactory setMessageFactory();
+    public abstract AbsIncMessage setIncMessage(Update update);
 }
