@@ -1,3 +1,5 @@
+package ru.lazybot;
+
 import com.pengrad.telegrambot.model.Update;
 
 public interface IIncMessage {
