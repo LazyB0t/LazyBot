@@ -15,7 +15,7 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     }
 
     @Override
-    public void saveData(List<SaveTo> saves, Update update) {
+    public void saveData(List<SaveTo> saves, AbsIncMessage incMessage) {
     //TODO: Implement saving data to standard stores from xml.
     }
 
@@ -32,6 +32,11 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     @Override
     public IMessageFactory setMessageFactory() {
         return new LazyMessageFactory();
+    }
+
+    @Override
+    public AbsIncMessage setIncMessage(Update update) {
+        return new LazyIncMessage(update);
     }
 
     @Override
