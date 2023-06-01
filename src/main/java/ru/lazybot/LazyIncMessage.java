@@ -47,6 +47,11 @@ public class LazyIncMessage extends AbsIncMessage {
     }
 
     @Override
+    public Map<String, String> getData() {
+        return data;
+    }
+
+    @Override
     public String getData(String dataType) {
         return data.get(dataType);
     }
