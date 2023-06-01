@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LazyRepliesManager extends AbsRepliesManager {
+public class LazyRepliesManager extends BaseRepliesManager {
 
     public LazyRepliesManager(List<Replies> listReplies) {
         super(listReplies);
@@ -24,9 +24,9 @@ public class LazyRepliesManager extends AbsRepliesManager {
         return new HashMap();
     }
 
-    //TODO: Made a temporary solution. Reworked the method with the AbsIncMessage class in mind.
+    //TODO: Made a temporary solution. Reworked the method with the BaseIncMessage class in mind.
     @Override
-    public List<Reply> getSuitableReplies(AbsIncMessage incMessage) {
+    public List<Reply> getSuitableReplies(BaseIncMessage incMessage) {
         Object chatID = incMessage.getChatID();
         String data = incMessage.getData("");
         if (getNextReplies().containsKey(chatID)) {

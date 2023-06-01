@@ -9,13 +9,13 @@ import com.pengrad.telegrambot.request.BaseRequest;
 
 import java.util.List;
 
-public class LazyUpdatesListener extends AbsUpdatesListener {
+public class LazyUpdatesListener extends BaseUpdatesListener {
     public LazyUpdatesListener(Bot bot, TelegramBot tgBotAPI) {
         super(bot,tgBotAPI);
     }
 
     @Override
-    public void saveData(List<SaveTo> saves, AbsIncMessage incMessage) {
+    public void saveData(List<SaveTo> saves, BaseIncMessage incMessage) {
     //TODO: Implement saving data to standard stores from xml.
     }
 
@@ -25,17 +25,17 @@ public class LazyUpdatesListener extends AbsUpdatesListener {
     }
 
     @Override
-    public IRepliesManager setRepliesManager(List<Replies> listReplies) {
+    public RepliesManager setRepliesManager(List<Replies> listReplies) {
         return new LazyRepliesManager(listReplies);
     }
 
     @Override
-    public IMessageFactory setMessageFactory() {
+    public MessageFactory setMessageFactory() {
         return new LazyMessageFactory();
     }
 
     @Override
-    public AbsIncMessage setIncMessage(Update update) {
+    public BaseIncMessage setIncMessage(Update update) {
         return new LazyIncMessage(update);
     }
 

@@ -4,7 +4,7 @@ import com.pengrad.telegrambot.request.BaseRequest;
 import ru.lazybot.messages.SendMessage;
 import ru.lazybot.elements.Reply;
 
-public class LazyMessageFactory implements IMessageFactory {
+public class LazyMessageFactory implements MessageFactory {
     @Override
     public BaseRequest getMessage(Object chatID,Reply reply) {
         for (String nameChild: reply.getNamesChildren()){

@@ -5,7 +5,7 @@ import com.pengrad.telegrambot.model.Update;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LazyIncMessage extends AbsIncMessage {
+public class LazyIncMessage extends BaseIncMessage {
     private String type;
     private Object chatID;
     private Map<String,String> data;
