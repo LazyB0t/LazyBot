@@ -4,7 +4,7 @@ import com.pengrad.telegrambot.model.Update;
 
 import java.util.Map;
 
-public interface IIncMessage {
+public interface IncMessage {
     public Update getUpdate();
     public String getType();
     public Object getChatID();
