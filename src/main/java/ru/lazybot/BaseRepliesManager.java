@@ -6,12 +6,12 @@ import ru.lazybot.elements.Reply;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbsRepliesManager implements IRepliesManager {
+public abstract class BaseRepliesManager implements RepliesManager {
     private List<Replies> listReplies;
     private Map<Object,List<Reply>> nextReplies;
     private Map<Object,List<Reply>> sentReplies;
 
-    public AbsRepliesManager(List<Replies> listReplies) {
+    public BaseRepliesManager(List<Replies> listReplies) {
         this.listReplies = listReplies;
         nextReplies = setNextReplies();
         sentReplies = setSentReplies();
