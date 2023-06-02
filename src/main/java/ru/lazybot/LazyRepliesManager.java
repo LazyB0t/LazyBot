@@ -24,31 +24,27 @@ public class LazyRepliesManager extends BaseRepliesManager {
         return new HashMap();
     }
 
-    //TODO: Made a temporary solution. Reworked the method with the BaseIncMessage class in mind.
     @Override
-    public List<Reply> getSuitableReplies(BaseIncMessage incMessage) {
-        Object chatID = incMessage.getChatID();
-        String data = incMessage.getData("");
-        if (getNextReplies().containsKey(chatID)) {
-            List<Reply> replies = getNextReplies().get(chatID);
-            getNextReplies().remove(chatID);
-            return findReplies(chatID, replies);
-        } else {
-            return findReplies(chatID, data);
-        }
+    public List<Reply> findRepliesByData(BaseIncMessage incMessage) {
+        return null;
     }
 
-    private List<Reply> findReplies(Object chatID, String after) {
+    @Override
+    public List<Reply> findRepliesByReply(BaseIncMessage incMessage, Reply reply) {
+        return null;
+    }
+
+   /* private List<Reply> findReplies(Object chatID, String after) {
         List<Reply> relevantReplies = new ArrayList();
         for (Replies replies : getListReplies()) {
             if (replies.getAfter().equals(after)) {
-                relevantReplies = replies.getReplies();
+                relevantReplies = replies.getReplies().contains();
                 break;
             }
         }
         for (Reply reply : relevantReplies) {
             if (reply.hasAttribute("wait")) {
-                getNextReplies().put(chatID,relevantReplies.subList(relevantReplies.indexOf(reply),relevantReplies.size()));
+                getNextReply().put(chatID,relevantReplies.subList(relevantReplies.indexOf(reply),relevantReplies.size()));
                 relevantReplies = relevantReplies.subList(0, relevantReplies.indexOf(reply));
                 break;
             }
@@ -59,11 +55,13 @@ public class LazyRepliesManager extends BaseRepliesManager {
     private List<Reply> findReplies(Object chatID, List<Reply> replies) {
         for (Reply reply : replies.subList(1,replies.size())) {
             if (reply.hasAttribute("wait")) {
-                getNextReplies().put(chatID,replies.subList(replies.indexOf(reply),replies.size()));
+                getNextReply().put(chatID,replies.subList(replies.indexOf(reply),replies.size()));
                 replies = replies.subList(0, replies.indexOf(reply));
                 break;
             }
         }
         return replies;
     }
+
+    */
 }
