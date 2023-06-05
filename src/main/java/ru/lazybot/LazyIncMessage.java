@@ -9,19 +9,26 @@ public class LazyIncMessage extends BaseIncMessage {
     private String type;
     private Object chatID;
     private Map<String,String> data;
+    private String command = "";
 
     public LazyIncMessage(Update update) {
         super(update);
         data = new HashMap();
-        if (update.callbackQuery() != null) {
-            type = "button";
-            data.put("callback", update.callbackQuery().data());
-            chatID = update.callbackQuery().message().chat().id();
-        } else if(update.message() != null) {
-            if (update.message().text() != null) {
-                type = "text";
-                data.put("text", update.message().text());
-            } else if (update.message().photo() != null) {
+            if (update.callbackQuery() != null) {
+                if (update.callbackQuery().data().equals("/back")) {
+                    type = "backButton";
+                } else {
+                    type = "button";
+                    command = update.callbackQuery().data();
+                    data.put("callback", command);
+                    chatID = update.callbackQuery().message().chat().id();
+                }
+            } else if(update.message() != null) {
+                if (update.message().text() != null) {
+                    type = "text";
+                    command = update.message().text();
+                    data.put("text", command);
+                } else if (update.message().photo() != null) {
                 type = "photo";
                 data.put("photo", update.message().photo()[0].fileId());
                 data.put("caption", update.message().caption());
@@ -33,6 +40,7 @@ public class LazyIncMessage extends BaseIncMessage {
             chatID = update.message().chat().id();
         } else {
             type = "unknown";
+            chatID = 0l;
         }
     }
 
@@ -54,6 +62,11 @@ public class LazyIncMessage extends BaseIncMessage {
     @Override
     public String getData(String dataType) {
         return data.get(dataType);
+    }
+
+    @Override
+    public String getCommand() {
+        return command;
     }
 }
 
