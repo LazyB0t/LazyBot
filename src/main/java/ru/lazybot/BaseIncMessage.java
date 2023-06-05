@@ -7,7 +7,6 @@ public abstract class BaseIncMessage implements IncMessage {
     public BaseIncMessage(Update update) {
         this.update = update;
     }
-    public abstract String getData(String dataType);
 
     @Override
     public Update getUpdate() {
