@@ -6,7 +6,14 @@ import java.util.Map;
 
 public interface IncMessage {
     public Update getUpdate();
+
     public String getType();
+
     public Object getChatID();
+
     public Map<String,String> getData();
+
+    String getData(String dataType);
+
+    String getCommand();
 }
