@@ -7,6 +7,7 @@ import ru.lazybot.elements.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SendMessage extends com.pengrad.telegrambot.request.SendMessage {
@@ -21,15 +22,16 @@ public class SendMessage extends com.pengrad.telegrambot.request.SendMessage {
     }
 
     private InlineKeyboardMarkup getKeyboard(List<ButtonsArray> buttonsArrays) {
-        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup();
-        for (int i = 0; i < buttonsArrays.size(); i++) {
-            List<Button> buttonsArray = buttonsArrays.get(i).getButtonsRow();
-            InlineKeyboardButton[] buttonsRow = new InlineKeyboardButton[buttonsArray.size()];
-            for (int j = 0; j < buttonsArray.size(); j++) {
-                buttonsRow[j] = new InlineKeyboardButton(buttonsArray.get(j).getButtonLabel().getValue()).callbackData(buttonsArray.get(j).getCallback().getValue());
+        InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup();
+        for (ButtonsArray buttonsArray: buttonsArrays) {
+            List<InlineKeyboardButton> inlineButtonsRow = new ArrayList();
+            for (Button button: buttonsArray.getButtonsRow()) {
+                InlineKeyboardButton inlineButton = new InlineKeyboardButton(button.getButtonLabel().getValue());
+                inlineButton.callbackData(button.getCallbackData());
+                inlineButtonsRow.add(inlineButton);
             }
-            keyboard.addRow(buttonsRow);
+            inlineKeyboard.addRow(inlineButtonsRow.toArray(new InlineKeyboardButton[inlineButtonsRow.size()]));
         }
-        return keyboard;
+        return inlineKeyboard;
     }
 }
