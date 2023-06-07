@@ -10,11 +10,15 @@ public class Button extends AbstractComplexElement {
     public Button(Node node) {
         super(node);
         buttonLabel = new ButtonLabel(getElement("ButtonLabel"));
-        callback = new Callback(getElement("Callback"));
+        callback = hasElement("Callback") ? new Callback(getElement("Callback")) : null;
     }
 
     public ButtonLabel getButtonLabel() {
         return buttonLabel;
+    }
+
+    public String getCallbackData() {
+        return callback.getValue();
     }
 
     public Callback getCallback() {
