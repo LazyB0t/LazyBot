@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ButtonsArray extends AbstractComplexElement {
     private List<Button> buttonsRow;
-    private BackButton backButton;
 
     public ButtonsArray(Node node) {
         super(node);
@@ -16,14 +15,12 @@ public class ButtonsArray extends AbstractComplexElement {
         for (Node button: getElements("Button")) {
             buttonsRow.add(new Button(button));
         }
-        backButton = hasElement("BackButton") ? new BackButton(getElement("BackButton")) : null;
+        if (hasElement("BackButton")) {
+            buttonsRow.add(new BackButton(getElement("BackButton")));
+        }
     }
 
     public List<Button> getButtonsRow() {
         return buttonsRow;
-    }
-
-    public BackButton getBackButton() {
-        return backButton;
     }
 }
