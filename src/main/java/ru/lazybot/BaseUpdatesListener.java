@@ -36,7 +36,7 @@ public abstract class BaseUpdatesListener implements UpdatesListener {
         for (Update update: list) {
             BaseIncMessage incMessage = setIncMessage(update);
             getNewUpdate(update);
-            if (incMessage.getType().equals("button")) {
+            if (incMessage.getType().equals("button") || incMessage.getType().equals("backButton")) {
                 tgReplies.add(new AnswerCallbackQuery(update.callbackQuery().id()));
             }
             for (Reply reply: RepliesManager.getSuitableReplies(incMessage)) {
