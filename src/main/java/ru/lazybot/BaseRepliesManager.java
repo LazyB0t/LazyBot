@@ -26,7 +26,7 @@ public abstract class BaseRepliesManager implements RepliesManager {
         List<Reply> suitableReplies = new ArrayList();
         if (users.get(incMessage.getChatID()) != null) {
             if (incMessage.getType().equals("backButton")) {
-                suitableReplies = users.get(incMessage.getChatID()).getSentReplies();
+                suitableReplies = users.get(incMessage.getChatID()).getSentReplies(incMessage);
                 return suitableReplies;
             } else {
                 suitableReplies = users.get(incMessage.getChatID()).getNextReplies(incMessage);
