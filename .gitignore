@@ -5,3 +5,4 @@ target/
 *.class
 src/main/resources
 src/main/java/ru/berrywoodfamily/Main.java
+pom.xml
