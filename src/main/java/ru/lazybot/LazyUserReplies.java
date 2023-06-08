@@ -46,9 +46,28 @@ public class LazyUserReplies extends BaseUserReplies {
     }
 
     @Override
-    //TODO: Implement the method.
-    public List<Reply> getSentReplies() {
-        return null;
+    public List<Reply> getSentReplies(IncMessage incMessage) {
+        List<Reply> sentReplies = new ArrayList();
+        currentReply -= Integer.valueOf(incMessage.getCommand());
+        if (currentReply < 0 ) {
+            if (repliesList.size() == 2 && repliesList.get(0).getReplies().size() + currentReply >= 0) {
+                replyList = repliesList.get(0).getReplies();
+                repliesList.remove(1);
+                currentReply += replyList.size();
+            } else {
+                return sentReplies;
+            }
+        }
+        sentReplies.add(replyList.get(currentReply));
+        for (int i = currentReply + 1; i < replyList.size(); i++) {
+            if (!replyList.get(i).hasAttribute("wait")) {
+                sentReplies.add(replyList.get(i));
+                currentReply += 1;
+            } else {
+                break;
+            }
+        }
+        return sentReplies;
     }
 
     @Override
@@ -60,6 +79,7 @@ public class LazyUserReplies extends BaseUserReplies {
             repliesList.add(replies);
         }
         replyList = repliesList.get(1).getReplies();
+        currentReply = -1;
     }
 
     @Override
