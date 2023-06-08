@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserReplies {
     List<Reply> getNextReplies(IncMessage IncMessage);
 
-    List<Reply> getSentReplies();
+    List<Reply> getSentReplies(IncMessage incMessage);
 
     void addReplies(Replies replies);
 
