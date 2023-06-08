@@ -15,14 +15,16 @@ public class LazyIncMessage extends BaseIncMessage {
         super(update);
         data = new HashMap();
             if (update.callbackQuery() != null) {
-                if (update.callbackQuery().data().equals("/back")) {
+                if (update.callbackQuery().data().contains("/back;")) {
                     type = "backButton";
+                    command = update.callbackQuery().data().split(";") [1];
+                    data.put("callback", update.callbackQuery().data());
                 } else {
                     type = "button";
                     command = update.callbackQuery().data();
                     data.put("callback", command);
-                    chatID = update.callbackQuery().message().chat().id();
                 }
+                chatID = update.callbackQuery().message().chat().id();
             } else if(update.message() != null) {
                 if (update.message().text() != null) {
                     type = "text";
