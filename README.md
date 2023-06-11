@@ -19,28 +19,42 @@ All you need to do is describe the bot structure with an xml file and __bom.xsd_
 
 ### bom.xml:
 ```xml
-<Replies after="/start">
-    <Reply>
-        <Message>
-            <Text>Hello world!</Text>
-        </Message>
-    </Reply>
-    <Reply>
-        <Menu>
-            <Text>This is a sample menu</Text>
-            <ButtonsArray>
-                <Button>
-                    <ButtonLabel>Зарегистрироваться на фестиваль</ButtonLabel>
-                    <Callback>StartReg</Callback>
-                </Button>
-                <BackButton>
-                    <ButtonLabel>Back</ButtonLabel>
-                    <Count>3</Count>
-                </BackButton>
-            </ButtonsArray>
-        </Menu>
-    </Reply>
-</Replies>
+<?xml version="1.0" encoding="UTF-8"?>
+<Bot token="123" xmlns="http://lazybot.ru"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://lazybot.ru bom.xsd">
+    <Replies after="/start">
+        <Reply>
+            <Message>
+                <Text>Hello world!</Text>
+            </Message>
+        </Reply>
+        <Reply>
+            <Menu>
+                <Text>This is a sample menu</Text>
+                <ButtonsArray>
+                    <Button>
+                        <ButtonLabel>Button1</ButtonLabel>
+                        <Callback>butt1</Callback>
+                    </Button>
+                </ButtonsArray>
+                <ButtonsArray>
+                    <BackButton>
+                        <ButtonLabel>Back</ButtonLabel>
+                        <Count>3</Count>
+                    </BackButton>
+                </ButtonsArray>
+            </Menu>
+        </Reply>
+    </Replies>
+    <Replies after="butt1">
+        <Reply>
+            <Message>
+                <Text>You pressed "Button1"</Text>
+            </Message>
+        </Reply>
+    </Replies>
+</Bot>
 ```
 
 ### Java:
