@@ -38,20 +38,20 @@ All you need to do is describe the bot structure with an xml file and __bom.xsd_
                         <Callback>butt1</Callback>
                     </Button>
                 </ButtonsArray>
-                <ButtonsArray>
-                    <BackButton>
-                        <ButtonLabel>Back</ButtonLabel>
-                        <Count>3</Count>
-                    </BackButton>
-                </ButtonsArray>
             </Menu>
         </Reply>
     </Replies>
     <Replies after="butt1">
         <Reply>
-            <Message>
+            <Menu>
                 <Text>You pressed "Button1"</Text>
-            </Message>
+                <ButtonsArray>
+                    <BackButton>
+                        <ButtonLabel>Back</ButtonLabel>
+                        <Count>1</Count>
+                    </BackButton>
+                </ButtonsArray>
+            </Menu>
         </Reply>
     </Replies>
 </Bot>
