@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://lazybot.ru"
+           xmlns="http://lazybot.ru"
+           elementFormDefault="qualified">
+
+    <xs:simpleType name="textMessage">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4096"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="callbackData">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="64"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="callbackType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="button"/>
+            <xs:enumeration value="text"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="saveType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="chatID"/>
+            <xs:enumeration value="messageData"/>
+            <xs:enumeration value="userName"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="Text" type="textMessage"/>
+    <xs:element name="Callback" type="callbackData"/>
+    <xs:element name="ButtonLabel" type="xs:string"/>
+    <xs:element name="Variable" type="xs:string"/>
+    <xs:element name="Count" type="xs:nonNegativeInteger"/>
+
+    <xs:element name="Button">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ButtonLabel"/>
+                <xs:element ref="Callback"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackButton">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ButtonLabel"/>
+                <xs:element ref="Count"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ButtonsArray">
+        <xs:complexType>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element ref="Button" maxOccurs="4"/>
+                        <xs:element ref="BackButton" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="Button" minOccurs="0" maxOccurs="4"/>
+                        <xs:element ref="BackButton"/>
+                    </xs:sequence>
+                </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Menu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Text"/>
+                <xs:element ref="ButtonsArray" maxOccurs="10"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Message">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Text"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SaveTo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Variable"/>
+            </xs:sequence>
+            <xs:attribute name="save" type="saveType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Reply">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="Message"/>
+                    <xs:element ref="Menu"/>
+                </xs:choice>
+                <xs:element ref="SaveTo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="wait" type="callbackType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Replies">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Reply" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="after" type="textMessage" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Bot">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Replies" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="token" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
