@@ -17,7 +17,8 @@ These goals are achieved by the fact that when creating telegram bots using the 
 ## Download
 [JAR on release page](https://github.com/Rillde/LazyBot/releases)
 
-## Example of a simple bot:
+## Example of a simple bot  
+In this simple example, let's create a bot that will be able to respond to certain commands sent to it by the user via simple text messages, menus and still be able to return to the past responses of the bot.
 
 ### bom.xml:
 ```xml
@@ -58,8 +59,7 @@ These goals are achieved by the fact that when creating telegram bots using the 
     </Replies>
 </Bot>
 ```
-
-### Java:
+### Java Bot application:
 ```java
 // Create a new LazyBot object
 LazyBotTG botTG = new LazyBotTG(inputStream);
@@ -72,6 +72,13 @@ botTG.start();
 // Basically, you don't have to do anything else.
 // It's easy enough :)
 ```
+As you can see, we were able to create a simple telegram bot using a couple of lines in an xml file and in our Java application. You may think that even this is already too much, but let's look at the things that we managed to avoid thanks to the use of the LazyBot framework:
+- Open and start studying the Telegram Bot API documentation;
+- Go into the implementation of [java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api);
+- Think over the architecture of our code in such a way that in the future it will be easily changeable;
+- Refactor the structure of the code that we managed to create, but realized that it would not suit us in the future.  
+  
+However, in the future we can add/change a couple of lines in our xml file and at the same time add new functionality for the bot or completely change it.
 
 ## [Documentation](https://github.com/Rillde/LazyBot/wiki)
 
