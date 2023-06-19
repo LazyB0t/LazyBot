@@ -1,16 +1,18 @@
 # LazyBot
-LazyBot is a framework for writing telegram bots.
-All you need to do is describe the bot structure with an xml file and __bom.xsd__ xml schema connected to it and integrate LazyBot into your project.
+
+**LazyBot** is an actively developing Open Source framework, which is designed to:
+- Lower the entry level into telegram bot development;
+- Give development of telegram bots a certain shape;
+- Introduce standards for creating telegram bots in Java environment.
+
+These goals are achieved by the fact that when creating telegram bots using the LazyBot framework:
+- You no longer need to learn the Telegram Bot API;
+- To describe your bot's functionality you use an xml file whose structure must correspond to bot.xsd;
+- Has specific extension points with which you can add functionality to suit your needs without breaking the original structure.
 
 ### Additional repositories:
 - The [java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api) is used to get data from telegram.
 - [JaxpToObjects](https://github.com/Rillde/JaxpToObjects) is used to map xml elements to Java classes.
-
-### Features:
-- Telegram bot is created using an xml file.
-- No knowledge of the telegram bot api required.
-- It is possible to save incoming messages.
-- Easy to extend.
 
 ## Download
 [JAR on release page](https://github.com/Rillde/LazyBot/releases)
