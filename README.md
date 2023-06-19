@@ -80,7 +80,8 @@ As you can see, we were able to create a simple telegram bot using a couple of l
   
 However, in the future we can add/change a couple of lines in our xml file and at the same time add new functionality for the bot or completely change it.
 
-## [Documentation](https://github.com/Rillde/LazyBot/wiki)
+## Documentation
+Documentation about xml elements and details of the framework implementation is stored in the [wiki section](https://github.com/Rillde/LazyBot/wiki).
 
 ## License
 Apache-2.0
