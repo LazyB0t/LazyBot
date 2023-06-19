@@ -1,14 +1,14 @@
 # LazyBot
 
-**LazyBot** is an actively developing Open Source framework, which is designed to:
-- Lower the entry level into telegram bot development;
-- Give development of telegram bots a certain shape;
-- Introduce standards for creating telegram bots in Java environment.
+**LazyBot** is an actively developing Open Source framework, which **is designed to**:
+- **Lower the entry level into telegram bot development;**
+- **Give development of telegram bots a certain shape;**
+- **Introduce standards for creating telegram bots in Java environment.**
 
-These goals are achieved by the fact that when creating telegram bots using the LazyBot framework:
-- You no longer need to learn the Telegram Bot API;
-- To describe your bot's functionality you use an xml file whose structure must correspond to bot.xsd;
-- Has specific extension points with which you can add functionality to suit your needs without breaking the original structure.
+These **goals are achieved by** the fact that when creating telegram bots using the **LazyBot** framework:
+- **You no longer need to learn the Telegram Bot API;**
+- **To describe your bot's functionality you use an xml file whose structure must correspond to bot.xsd;**
+- **Has specific extension points with which you can add functionality to suit your needs without breaking the original structure.**
 
 ### Additional repositories:
 - The [java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api) is used to get data from telegram.
@@ -72,11 +72,11 @@ botTG.start();
 // Basically, you don't have to do anything else.
 // It's easy enough :)
 ```
-As you can see, we were able to create a simple telegram bot using a couple of lines in an xml file and in our Java application. You may think that even this is already too much, but let's look at the things that we managed to avoid thanks to the use of the LazyBot framework:
-- Open and start studying the Telegram Bot API documentation;
-- Go into the implementation of [java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api);
-- Think over the architecture of our code in such a way that in the future it will be easily changeable;
-- Refactor the structure of the code that we managed to create, but realized that it would not suit us in the future.  
+As you can see, we were able to create a simple telegram bot using a couple of lines in an xml file and in our Java application. You may think that even this is already too much, but let's look at the things that **we managed to avoid** thanks to the use of the **LazyBot** framework:
+- **Open and start studying the Telegram Bot API documentation;**
+- **Go into the implementation of [java-telegram-bot-api](https://github.com/pengrad/java-telegram-bot-api);**
+- **Think over the architecture of our code in such a way that in the future it will be easily changeable;**
+- **Refactor the structure of the code that we managed to create, but realized that it would not suit us in the future.**  
   
 However, in the future we can add/change a couple of lines in our xml file and at the same time add new functionality for the bot or completely change it.
 
