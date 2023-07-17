@@ -1,19 +1,18 @@
 package ru.lazybot;
 
 import com.pengrad.telegrambot.model.Update;
-
 import java.util.Map;
 
 public interface IncMessage {
-    public Update getUpdate();
+  public Update getUpdate();
 
-    public String getType();
+  public String getType();
 
-    public Object getChatID();
+  public Object getChatID();
 
-    public Map<String,String> getData();
+  public Map<String, String> getData();
 
-    String getData(String dataType);
+  String getData(String dataType);
 
-    String getCommand();
+  String getCommand();
 }
